@@ -1,0 +1,25 @@
+if ARCH_SUN5I
+
+config SUN5I_FPGA
+	bool "FPGA Board Support"
+	help
+	  Only for FPGA board. 
+
+choice
+        prompt "Chips Type"
+        default SUN5I_A12
+
+config SUN5I_A12
+        bool "sun5i-a12"
+        help
+          sun5i-a12.
+
+config SUN5I_A13
+	bool "sun5i-a13"
+	help
+	  sun5i-a13.
+
+endchoice
+
+endif
+

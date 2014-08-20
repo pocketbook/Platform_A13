@@ -1,0 +1,12 @@
+config RTL8188EU
+	tristate "Realtek 8188E USB WiFi"
+	depends on USB
+	---help---
+	  Help message of RTL8188EU
+
+config RTL8188_POWER_ONOFF
+	bool "Allow Realtek 8188EU change power"
+	depends on RTL8188EU
+	---help---
+		"Allow Realtek 8188EU chip change power state of its USB bus when loading or unloading"
+

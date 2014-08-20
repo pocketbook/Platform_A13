@@ -1,0 +1,306 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+cpu_ms_loopcnt      0x4               ./super/super_clock.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000000                __resume0_start = .
+
+.text           0x40100000     0x5f78
+ ./super/resume/resume0.o(.text)
+ .text          0x40100000       0xc8 ./super/resume/resume0.o
+                0x40100000                main
+ *(.text)
+ .text          0x401000c8       0x24 ./super/common.o
+                0x401000c8                mem_memcpy
+ *fill*         0x401000ec       0x14 00
+ .text          0x40100100      0x500 ./super/stack.o
+                0x40100100                save_sp
+                0x4010010c                save_sp_nommu
+                0x40100118                restore_sp
+                0x40100120                mem_flush_tlb
+                0x4010015c                flush_dcache
+                0x401001f8                flush_icache
+                0x40100210                invalidate_branch_predictor
+                0x40100228                disable_cache
+                0x40100248                disable_dcache
+                0x40100264                disable_icache
+                0x40100280                enable_icache
+                0x4010029c                disable_l2cache
+                0x401002b8                disable_program_flow_prediction
+                0x401002d4                enable_cache
+                0x401002f4                enable_program_flow_prediction
+                0x40100310                mem_preload_tlb
+                0x40100404                mem_preload_tlb_nommu
+                0x401004f8                disable_mmu
+                0x40100534                enable_mmu
+ .text          0x40100600      0x78c ./super/super_twi.o
+                0x40100600                mem_twi_init
+                0x401006e8                setup_twi_env
+                0x40100744                twi_byte_rw
+                0x40100a1c                twi_byte_rw_nommu
+                0x40100d3c                mem_twi_exit
+ .text          0x40100d8c       0x28 ./super/super_delay.o
+                0x40100d8c                mem_delay
+ .text          0x40100db4      0x274 ./super/super_clock.o
+                0x40100db4                mem_clk_init
+                0x40100dd0                mem_clk_plldisable
+                0x40100e2c                mem_clk_pllenable
+                0x40100e88                mem_clk_setdiv
+                0x40100eec                mem_clk_getdiv
+                0x40100f48                mem_clk_set_pll_factor
+                0x40100fa8                mem_clk_get_pll_factor
+                0x40100ff8                mem_clk_dramgating
+ *fill*         0x40101028        0x8 00
+ .text          0x40101030     0x4050 ./super/resume1_asm.o
+                0x40101030                resume1_bin_start
+                0x40105080                resume1_bin_end
+ .text          0x40105080      0x384 pm_debug.o
+                0x40105080                busy_waiting
+                0x401050a0                fake_busy_waiting
+                0x401050c0                save_mem_flag
+                0x401050d8                save_mem_status
+                0x401050e8                get_mem_status
+                0x401050f8                save_mem_status_nommu
+                0x40105108                save_sun5i_mem_status
+                0x4010512c                save_sun5i_mem_status_nommu
+                0x40105150                get_cyclecount
+                0x40105158                backup_perfcounter
+                0x40105174                init_perfcounters
+                0x401051a0                restore_perfcounter
+                0x401051c0                reset_counter
+                0x401051d4                change_runtime_env
+                0x401052f8                delay_us
+                0x4010537c                delay_ms
+                0x40105388                io_init
+                0x401053a0                io_init_high
+                0x401053b8                io_init_low
+                0x401053d0                io_high
+ *fill*         0x40105404        0xc 00
+ .text          0x40105410      0x150 mem_mmu_pc_asm.o
+                0x40105410                invalidate_dcache
+                0x401054b0                jump_to_resume
+                0x401054d0                jump_to_resume0
+                0x401054e0                jump_to_resume0_nommu
+                0x40105510                save_runtime_context
+                0x40105520                clear_reg_context
+ .text          0x40105560      0xa18 mem_cpu.o
+                0x40105560                __save_processor_state
+                0x40105b04                __restore_processor_state
+                0x40105e88                mem_restore_processor_state
+                0x40105e8c                disable_cache_invalidate
+                0x40105ea4                set_copro_default
+
+.glue_7         0x40105f78        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x40105f78        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x40105f78        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x40105f78        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.rodata         0x40105f78        0xc
+ *(.rodata)
+ .rodata        0x40105f78        0xc ./super/super_twi.o
+
+.data           0x40105f84        0x0
+ *(.data)
+ .data          0x40105f84        0x0 ./super/resume/resume0.o
+ .data          0x40105f84        0x0 ./super/common.o
+ .data          0x40105f84        0x0 ./super/stack.o
+ .data          0x40105f84        0x0 ./super/super_twi.o
+ .data          0x40105f84        0x0 ./super/super_delay.o
+ .data          0x40105f84        0x0 ./super/super_clock.o
+ .data          0x40105f84        0x0 ./super/resume1_asm.o
+ .data          0x40105f84        0x0 pm_debug.o
+ .data          0x40105f84        0x0 mem_mmu_pc_asm.o
+ .data          0x40105f84        0x0 mem_cpu.o
+                0x40105f84                __bss_start = .
+
+.bss            0x40105f84       0x2c
+ *(.sbss)
+ *(.scommon)
+ *(.bss)
+ .bss           0x40105f84        0x4 ./super/resume/resume0.o
+ .bss           0x40105f88        0x0 ./super/common.o
+ .bss           0x40105f88        0x0 ./super/stack.o
+ .bss           0x40105f88       0x10 ./super/super_twi.o
+ .bss           0x40105f98        0x0 ./super/super_delay.o
+ .bss           0x40105f98        0x4 ./super/super_clock.o
+ .bss           0x40105f9c        0x0 ./super/resume1_asm.o
+ .bss           0x40105f9c       0x10 pm_debug.o
+ .bss           0x40105fac        0x0 mem_mmu_pc_asm.o
+ .bss           0x40105fac        0x0 mem_cpu.o
+ *(COMMON)
+ COMMON         0x40105fac        0x4 ./super/super_clock.o
+                0x40105fac                cpu_ms_loopcnt
+                0x40105fb0                __bss_end = .
+                0x40105fb0                __resume0_end = .
+LOAD ./super/common.o
+LOAD ./super/stack.o
+LOAD ./super/super_twi.o
+LOAD ./super/super_delay.o
+LOAD ./super/super_clock.o
+LOAD ./super/resume1_asm.o
+LOAD ./super/resume/resume0.o
+LOAD pm_debug.o
+LOAD mem_mmu_pc_asm.o
+LOAD mem_cpu.o
+OUTPUT(resume0.elf elf32-littlearm)
+
+.debug_abbrev   0x00000000      0x8d8
+ .debug_abbrev  0x00000000      0x100 ./super/resume/resume0.o
+ .debug_abbrev  0x00000100       0x85 ./super/common.o
+ .debug_abbrev  0x00000185       0x14 ./super/stack.o
+ .debug_abbrev  0x00000199      0x25f ./super/super_twi.o
+ .debug_abbrev  0x000003f8       0x14 ./super/super_delay.o
+ .debug_abbrev  0x0000040c      0x178 ./super/super_clock.o
+ .debug_abbrev  0x00000584      0x24c pm_debug.o
+ .debug_abbrev  0x000007d0       0x14 mem_mmu_pc_asm.o
+ .debug_abbrev  0x000007e4       0xf4 mem_cpu.o
+
+.debug_info     0x00000000     0x54d4
+ .debug_info    0x00000000      0x5e3 ./super/resume/resume0.o
+ .debug_info    0x000005e3       0xc3 ./super/common.o
+ .debug_info    0x000006a6       0x71 ./super/stack.o
+ .debug_info    0x00000717     0x21bc ./super/super_twi.o
+ .debug_info    0x000028d3       0x77 ./super/super_delay.o
+ .debug_info    0x0000294a     0x2080 ./super/super_clock.o
+ .debug_info    0x000049ca      0x5c4 pm_debug.o
+ .debug_info    0x00004f8e       0x77 mem_mmu_pc_asm.o
+ .debug_info    0x00005005      0x4cf mem_cpu.o
+
+.debug_line     0x00000000      0x803
+ .debug_line    0x00000000       0xa6 ./super/resume/resume0.o
+ .debug_line    0x000000a6       0x47 ./super/common.o
+ .debug_line    0x000000ed      0x150 ./super/stack.o
+ .debug_line    0x0000023d      0x1bf ./super/super_twi.o
+ .debug_line    0x000003fc       0x4e ./super/super_delay.o
+ .debug_line    0x0000044a      0x121 ./super/super_clock.o
+ .debug_line    0x0000056b      0x11d pm_debug.o
+ .debug_line    0x00000688       0x8a mem_mmu_pc_asm.o
+ .debug_line    0x00000712       0xf1 mem_cpu.o
+
+.debug_frame    0x00000000      0x368
+ .debug_frame   0x00000000       0x2c ./super/resume/resume0.o
+ .debug_frame   0x0000002c       0x20 ./super/common.o
+ .debug_frame   0x0000004c       0x98 ./super/super_twi.o
+ .debug_frame   0x000000e4       0x90 ./super/super_clock.o
+ .debug_frame   0x00000174      0x194 pm_debug.o
+ .debug_frame   0x00000308       0x60 mem_cpu.o
+
+.debug_loc      0x00000000      0x711
+ .debug_loc     0x00000000       0x1f ./super/resume/resume0.o
+ .debug_loc     0x0000001f      0x2c7 ./super/super_twi.o
+ .debug_loc     0x000002e6       0x78 ./super/super_clock.o
+ .debug_loc     0x0000035e      0x3b3 pm_debug.o
+
+.debug_pubnames
+                0x00000000      0x3b6
+ .debug_pubnames
+                0x00000000       0x1b ./super/resume/resume0.o
+ .debug_pubnames
+                0x0000001b       0x21 ./super/common.o
+ .debug_pubnames
+                0x0000003c       0x6c ./super/super_twi.o
+ .debug_pubnames
+                0x000000a8       0xd6 ./super/super_clock.o
+ .debug_pubnames
+                0x0000017e      0x19a pm_debug.o
+ .debug_pubnames
+                0x00000318       0x9e mem_cpu.o
+
+.debug_aranges  0x00000000      0x120
+ .debug_aranges
+                0x00000000       0x20 ./super/resume/resume0.o
+ .debug_aranges
+                0x00000020       0x20 ./super/common.o
+ .debug_aranges
+                0x00000040       0x20 ./super/stack.o
+ .debug_aranges
+                0x00000060       0x20 ./super/super_twi.o
+ .debug_aranges
+                0x00000080       0x20 ./super/super_delay.o
+ .debug_aranges
+                0x000000a0       0x20 ./super/super_clock.o
+ .debug_aranges
+                0x000000c0       0x20 pm_debug.o
+ .debug_aranges
+                0x000000e0       0x20 mem_mmu_pc_asm.o
+ .debug_aranges
+                0x00000100       0x20 mem_cpu.o
+
+.debug_str      0x00000000     0x163c
+ .debug_str     0x00000000      0x33f ./super/resume/resume0.o
+                                0x37b (size before relaxing)
+ .debug_str     0x0000033f       0x31 ./super/common.o
+                                 0xe4 (size before relaxing)
+ .debug_str     0x00000370      0xf3b ./super/super_twi.o
+                               0x105d (size before relaxing)
+ .debug_str     0x000012ab       0xbc ./super/super_clock.o
+                                0xfd2 (size before relaxing)
+ .debug_str     0x00001367      0x235 pm_debug.o
+                                0x30d (size before relaxing)
+ .debug_str     0x0000159c       0xa0 mem_cpu.o
+                                0x282 (size before relaxing)
+
+.comment        0x00000000       0x1e
+ .comment       0x00000000       0x1e ./super/resume/resume0.o
+                                 0x1f (size before relaxing)
+ .comment       0x00000000       0x1f ./super/common.o
+ .comment       0x00000000       0x1f ./super/super_twi.o
+ .comment       0x00000000       0x1f ./super/super_clock.o
+ .comment       0x00000000       0x1f pm_debug.o
+ .comment       0x00000000       0x1f mem_cpu.o
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 ./super/resume/resume0.o
+ .note.GNU-stack
+                0x00000000        0x0 ./super/common.o
+ .note.GNU-stack
+                0x00000000        0x0 ./super/super_twi.o
+ .note.GNU-stack
+                0x00000000        0x0 ./super/super_clock.o
+ .note.GNU-stack
+                0x00000000        0x0 pm_debug.o
+ .note.GNU-stack
+                0x00000000        0x0 mem_cpu.o
+
+.ARM.attributes
+                0x00000000       0x2b
+ .ARM.attributes
+                0x00000000       0x2d ./super/resume/resume0.o
+ .ARM.attributes
+                0x0000002d       0x2d ./super/common.o
+ .ARM.attributes
+                0x0000005a       0x1d ./super/stack.o
+ .ARM.attributes
+                0x00000077       0x2d ./super/super_twi.o
+ .ARM.attributes
+                0x000000a4       0x1d ./super/super_delay.o
+ .ARM.attributes
+                0x000000c1       0x2d ./super/super_clock.o
+ .ARM.attributes
+                0x000000ee       0x1d ./super/resume1_asm.o
+ .ARM.attributes
+                0x0000010b       0x2d pm_debug.o
+ .ARM.attributes
+                0x00000138       0x1d mem_mmu_pc_asm.o
+ .ARM.attributes
+                0x00000155       0x2d mem_cpu.o
+
+.debug_ranges   0x00000000       0x30
+ .debug_ranges  0x00000000       0x30 pm_debug.o
